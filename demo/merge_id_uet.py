@@ -102,7 +102,6 @@ def get_parser():
 if __name__ == '__main__':
     args = get_parser().parse_args()
     cfg = setup_cfg(args)
-    print(cfg)
     test_loader, num_query = build_reid_test_loader(cfg, dataset_name=args.dataset_name)
     demo = FeatureExtractionDemo(cfg, parallel=args.parallel)
 

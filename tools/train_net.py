@@ -13,6 +13,7 @@ from fastreid.config import get_cfg
 from fastreid.engine import DefaultTrainer, default_argument_parser, default_setup, launch
 from fastreid.utils.checkpoint import Checkpointer
 
+from fastreid.data.datasets.vtx import VTXReid
 
 def setup(args):
     """

@@ -19,6 +19,9 @@ from .data_utils import DataLoaderX
 from .datasets import DATASET_REGISTRY
 from .transforms import build_transforms
 
+import torch.multiprocessing
+torch.multiprocessing.set_sharing_strategy('file_system')
+
 __all__ = [
     "build_reid_train_loader",
     "build_reid_test_loader"
@@ -153,7 +156,7 @@ def build_reid_test_loader(test_set, test_batch_size, num_query, num_workers=4):
         batch_sampler=batch_sampler,
         num_workers=num_workers,  # save some memory
         collate_fn=fast_batch_collator,
-        pin_memory=True,
+        pin_memory=False,
     )
     return test_loader, num_query
 

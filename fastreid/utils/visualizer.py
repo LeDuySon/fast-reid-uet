@@ -66,7 +66,8 @@ class Visualizer:
             plt.clf()
             ax = fig.add_subplot(1, max_rank + 1, 1)
             ax.imshow(query_img)
-            ax.set_title('{:.4f}/cam{}'.format(self.all_ap[q_idx], cam_id))
+            # ax.set_title('{:.4f}/cam{}/{}'.format(self.all_ap[q_idx], cam_id, query_name))
+            ax.set_title('{}'.format(query_name))
             ax.axis("off")
             for i in range(max_rank):
                 if vis_label:
@@ -76,6 +77,7 @@ class Visualizer:
                 g_idx = self.num_query + sort_idx[i]
                 gallery_info = self.dataset[g_idx]
                 gallery_img = gallery_info['images']
+                gallery_name = gallery_info['img_paths'].split('/')[-1]
                 cam_id = gallery_info['camids']
                 all_imgs.append(gallery_img)
                 gallery_img = np.rollaxis(np.asarray(gallery_img, dtype=np.uint8), 0, 3)
@@ -90,7 +92,8 @@ class Visualizer:
                                                height=gallery_img.shape[0] - 1,
                                                edgecolor=(0, 0, 1), fill=False, linewidth=5))
                 ax.imshow(gallery_img)
-                ax.set_title(f'{self.sim[q_idx, sort_idx[i]]:.3f}/{label}/cam{cam_id}')
+                # ax.set_title(f'{self.sim[q_idx, sort_idx[i]]:.3f}/{label}/cam{cam_id}/{gallery_name}')
+                ax.set_title(f'{gallery_name}')
                 ax.axis("off")
             # if actmap:
             #     act_outputs = []
