@@ -35,6 +35,7 @@ from .shinpuhkan import Shinpuhkan
 from .wildtracker import WildTrackCrop
 from .cuhk_sysu import cuhkSYSU
 from .vtx import VTXReid
+from .vtx_group_dur import VTXReidGroup
 
 # Vehicle re-id datasets
 from .veri import VeRi

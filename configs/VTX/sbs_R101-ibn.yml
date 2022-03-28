@@ -1,0 +1,12 @@
+_BASE_: ../Base-SBS.yml
+
+MODEL:
+  BACKBONE:
+    DEPTH: 101x
+    WITH_IBN: True
+
+DATASETS:
+  NAMES: ("VTXReid",)
+  TESTS: ("VTXReid",)
+
+OUTPUT_DIR: logs/vtx_reid/sbs_R50-ibn

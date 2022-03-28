@@ -70,10 +70,13 @@ class Visualizer:
             ax.set_title('{}'.format(query_name))
             ax.axis("off")
             for i in range(max_rank):
+                if(i >= len(sort_idx)):
+                    break
                 if vis_label:
                     ax = fig.add_subplot(2, max_rank + 1, i + 2)
                 else:
                     ax = fig.add_subplot(1, max_rank + 1, i + 2)
+                
                 g_idx = self.num_query + sort_idx[i]
                 gallery_info = self.dataset[g_idx]
                 gallery_img = gallery_info['images']
@@ -137,6 +140,7 @@ class Visualizer:
             plt.tight_layout()
             filepath = os.path.join(output, "{}.jpg".format(cnt))
             fig.savefig(filepath)
+        plt.close('all')
 
     def vis_rank_list(self, output, vis_label, num_vis=100, rank_sort="ascending", label_sort="ascending", max_rank=5,
                       actmap=False):
