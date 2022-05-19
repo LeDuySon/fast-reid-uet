@@ -3,6 +3,7 @@ _BASE_: ../Base-SBS.yml
 MODEL:
   BACKBONE:
     WITH_IBN: True
+  WEIGHTS: "/home/ailab-rgb-1080ti/Work/uet-lab/VTX-MTMC/reid-model/fast-reid/pretrained_models/market_sbs_R50-ibn.pth"
 
 DATASETS:
   NAMES: ("VTXReid",)

@@ -79,7 +79,6 @@ def postprocess(features):
     features = features.cpu().data.numpy()
     return features
 
-
 if __name__ == '__main__':
     args = get_parser().parse_args()
     cfg = setup_cfg(args)

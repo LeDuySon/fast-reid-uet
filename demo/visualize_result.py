@@ -63,7 +63,6 @@ def get_parser():
         "--output",
         default="./vis_rank_list",
         help="a file or directory to save rankling list result.",
-
     )
     parser.add_argument(
         "--vis-label",
@@ -129,6 +128,8 @@ if __name__ == '__main__':
 
     logger.info("Computing APs for all query images ...")
     cmc, all_ap, all_inp = evaluate_rank(distmat, q_pids, g_pids, q_camids, g_camids)
+    print("CMC: ", cmc)
+    print("all_ap: ", all_ap)
     logger.info("Finish computing APs for all query images!")
 
     visualizer = Visualizer(test_loader.dataset)
