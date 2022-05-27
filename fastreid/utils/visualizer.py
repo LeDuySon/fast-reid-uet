@@ -67,7 +67,7 @@ class Visualizer:
             ax = fig.add_subplot(1, max_rank + 1, 1)
             ax.imshow(query_img)
             # ax.set_title('{:.4f}/cam{}/{}'.format(self.all_ap[q_idx], cam_id, query_name))
-            ax.set_title('{}'.format(query_name))
+            ax.set_title('{}/cam{}'.format(query_name, cam_id))
             ax.axis("off")
             for i in range(max_rank):
                 if(i >= len(sort_idx)):
@@ -96,7 +96,7 @@ class Visualizer:
                                                edgecolor=(0, 0, 1), fill=False, linewidth=5))
                 ax.imshow(gallery_img)
                 # ax.set_title(f'{self.sim[q_idx, sort_idx[i]]:.3f}/{label}/cam{cam_id}/{gallery_name}')
-                ax.set_title(f'{gallery_name}')
+                ax.set_title(f'{gallery_name}/cam{cam_id}')
                 ax.axis("off")
             # if actmap:
             #     act_outputs = []
@@ -126,6 +126,7 @@ class Visualizer:
                     g_idx = self.num_query + sort_idx[j]
                     gallery_info = self.dataset[g_idx]
                     gallery_img = gallery_info['images']
+                    gallery_name = gallery_info['img_paths'].split('/')[-1]
                     cam_id = gallery_info['camids']
                     gallery_img = np.rollaxis(np.asarray(gallery_img, dtype=np.uint8), 0, 3)
                     ax = fig.add_subplot(2, max_rank + 1, max_rank + 3 + i)
@@ -134,7 +135,7 @@ class Visualizer:
                                                edgecolor=(1, 0, 0),
                                                fill=False, linewidth=5))
                     ax.imshow(gallery_img)
-                    ax.set_title(f'{self.sim[q_idx, sort_idx[j]]:.3f}/cam{cam_id}')
+                    ax.set_title(f'{gallery_name}/cam{cam_id}')
                     ax.axis("off")
 
             plt.tight_layout()

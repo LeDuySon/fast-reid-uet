@@ -54,16 +54,16 @@ class VTXReid(ImageDataset):
             img_name = osp.basename(img_path).split(".")[0]
             scene, duration, cam_view, frameId, obj_id = img_name.split("_")
             if(is_train):
-                pid = f"{scene}_{duration}_{obj_id}"
-                camid = f"{scene}_{duration}_{cam_view}"
+                pid = f"{scene}_{obj_id}"
+                camid = f"{scene}_{cam_view}"
             else:
-                pid_str = f"{scene}_{duration}_{obj_id}"
+                pid_str = f"{scene}_{obj_id}"
                 if(pid_str not in self.id_mapper):
                     self.id_mapper[pid_str] = self.id_counter
                     self.id_counter += 1
                 pid = self.id_mapper[pid_str]
                 
-                camid_str = f"{scene}_{duration}_{cam_view}"
+                camid_str = f"{scene}_{cam_view}"
                 if(camid_str not in self.camid_mapper):
                     self.camid_mapper[camid_str] = self.camid_counter
                     self.camid_counter += 1
