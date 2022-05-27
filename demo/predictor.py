@@ -9,6 +9,7 @@ import bisect
 from collections import deque
 
 import cv2
+import numpy as np
 import torch
 import torch.multiprocessing as mp
 
@@ -55,6 +56,16 @@ class FeatureExtractionDemo(object):
         # network input
         image = torch.as_tensor(image.astype("float32").transpose(2, 0, 1))[None]
         predictions = self.predictor(image)
+        return predictions
+    
+    def run_on_batch(self, images):
+        for idx in range(len(images)):
+            images[idx] = images[idx][:, :, ::-1]
+            images[idx] = cv2.resize(images[idx], tuple(self.cfg.INPUT.SIZE_TEST[::-1]), interpolation=cv2.INTER_CUBIC)
+        
+        images_tensor = torch.as_tensor(np.asarray(images).astype("float32").transpose(0, 3, 1, 2))
+        predictions = self.predictor(images_tensor)
+        
         return predictions
 
     def run_on_loader(self, data_loader):

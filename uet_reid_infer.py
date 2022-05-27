@@ -40,12 +40,12 @@ def setup_cfg(args):
 
 def postprocess(features):
     # Normalize feature to compute cosine distance
-    features = F.normalize(features)
+    # features = F.normalize(features)
     features = features.cpu().data.numpy()
     return features
 
 def build_model(args):
     cfg = setup_cfg(args)
-    demo = FeatureExtractionDemo(cfg, parallel=args.parallel)
+    demo = FeatureExtractionDemo(cfg, parallel=False)
     
     return demo

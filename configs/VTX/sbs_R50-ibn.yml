@@ -3,6 +3,8 @@ _BASE_: ../Base-SBS.yml
 MODEL:
   BACKBONE:
     WITH_IBN: True
+  WEIGHTS: "fast-reid-uet/checkpoints/sbs_r50_ibn_best.pth"
+
 
 DATASETS:
   NAMES: ("VTXReid",)
